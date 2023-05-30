@@ -12,18 +12,6 @@ app.use(compression(), cors(), bodyparser.json({ limit: '1150kb' }), bodyparser.
 
 const database = { global: { playing: { url: "", duration: 0, time: 0 }, queue: [], users: [], moderators: [] } };
 
-function logger() {
-    setTimeout(function () {
-        try {
-            console.log(database["testee"].playing, database["testee"].queue);
-            logger();
-        } catch (err) {
-            logger();
-        }
-    }, 500)
-}
-logger();
-
 function getVideoInformations(url, callback_function) {
     let extract_url = "";
     try{extract_url=url.match(/(?<=watch\?v=)[\w-]+/)[0];}catch(err){return callback_function({exists:false,duration:0,url:""})}
